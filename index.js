@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const package = require("./package.json");
 const { program } = require('commander');
-const scan = require(`./commands/scan`).scan;
-const list = require(`./commands/list`).list;
+const packageJson = require('./package.json');
+const { scan } = require('./commands/scan');
+const { list } = require('./commands/list');
 
-program.version(package.version, "-v, --vers", "output the current version");
+program.version(packageJson.version, '-v, --vers', 'output the current version');
 
 program
   .command('list')

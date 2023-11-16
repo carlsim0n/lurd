@@ -123,3 +123,4 @@ dist
 # General
 .stacks
 .DS_Store
+.vscode
