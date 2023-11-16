@@ -1,0 +1,24 @@
+[
+    "nodejs",
+    "nodejs4.3-edge",
+    "dotnetcore2.0",
+    "dotnetcore1.0",
+    "nodejs6.10",
+    "nodejs4.3",
+    "nodejs8.10",
+    "nodejs10.x",
+    "ruby2.5",
+    "dotnetcore2.1",
+    "dotnet5.0",
+    "python2.7",
+    "python3.6",
+    "python3.7",
+    "nodejs12.x",
+    "nodejs14.x",
+    "dotnetcore3.1",
+    "java8",
+    "go1.x",
+    "ruby2.7",
+    "provided"
+  ]
+  
