@@ -4,13 +4,12 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  checks: write
-
 jobs:
 
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
     steps:
       - uses: actions/checkout@v4
       - name: lint
@@ -20,6 +19,9 @@ jobs:
 
   DependabotAutoMerge:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
     needs: [ lint ]
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
