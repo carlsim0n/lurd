@@ -28,6 +28,6 @@ jobs:
       - name: Merge Dependabot pull request
         uses: fastify/github-action-merge-dependabot@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.LURD_GITHUB_TOKEN }}
           target: minor
           merge-method: rebase
