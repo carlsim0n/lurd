@@ -27,7 +27,8 @@
     "cloudformation",
     "deprecated runtimes",
     "lambda",
-    "serverless"
+    "serverless",
+    "unsupported runtimes"
   ],
   "engines": {
     "node": ">=18.0.0"
