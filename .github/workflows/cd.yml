@@ -1,0 +1,45 @@
+name: cd
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: lint
+        uses: ./.github/workflows/actions/lint
+        with:
+          node-version: 18
+
+  Release:
+    needs: [ lint ]
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          registry-url: https://registry.npmjs.org/
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        shell: bash
+        run: npm install
+      - name: Semantic Release
+        run: npx semantic-release
+        shell: bash
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

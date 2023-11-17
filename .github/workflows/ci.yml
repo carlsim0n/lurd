@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: lint
+        uses: ./.github/workflows/actions/lint
+        with:
+          node-version: 18
+
+  DependabotAutoMerge:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    needs: [ lint ]
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Merge Dependabot pull request
+        uses: fastify/github-action-merge-dependabot@v3
+        with:
+          github-token: ${{ secrets.LURD_GITHUB_TOKEN }}
+          target: minor
+          merge-method: rebase
