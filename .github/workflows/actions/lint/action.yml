@@ -1,0 +1,24 @@
+name: lint
+inputs:
+  node-version:
+    required: true
+    description: 'Node version'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: npm
+        registry-url: https://registry.npmjs.org/
+        cache-dependency-path: package-lock.json
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+    - name: Lint
+      uses: wearerequired/lint-action@v2
+      with:
+        eslint: true
+        eslint_extensions: js,ts,tsx,mjs
