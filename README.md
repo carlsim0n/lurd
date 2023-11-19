@@ -4,7 +4,10 @@
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 [![cd](https://github.com/carlsim0n/lurd/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/carlsim0n/lurd/actions/workflows/cd.yml)
 
-Have you like many others started your cloud journey by producing loads of lambdas? As time goes by you might have lambdas with deprecated runtimes. Do you suspect you have deprecated ones? Then go ahead and use this tool to scan your AWS account.
+Have you like many others started your cloud journey by producing loads of lambdas? As time goes by you might have lambdas with deprecated runtimes. Do you suspect you have deprecated ones? Then go ahead and use this tool to scan your AWS account. 
+
+**But there's already a trusted advisor check that can list deprecated lambda runtimes?**  
+Yes, but it requires business or enterprice support plans. Besides, Lambda Unsupported Runtimes Detector (lurd) lists the stacks that the function belongs to which reduces the amount of time spent on detective work.
 
 #### Note
 This tool **only** scans lambdas **created through AWS cloudformation**. The idea is that you should easliy be able to overlook a list of functions and which stack they belong to in order to take action.
@@ -12,12 +15,10 @@ This tool **only** scans lambdas **created through AWS cloudformation**. The ide
 ## Getting started
 
 1. Install the tool
-
 ```bash
 npm install -g lambda-unsupported-runtimes-detector
 ```
-
-2. Authenticate to your AWS account though CLI.
+2. Authenticate to your AWS account though CLI
 
 ### Commands
 

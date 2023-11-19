@@ -5,6 +5,7 @@
 const yaml = require('js-yaml');
 const cliProgress = require('cli-progress');
 const fs = require('fs-extra');
+const path = require('path');
 const utils = require('../../shared/utils');
 const aws = require('../../shared/aws');
 const deprecatedRuntimes = require('../../shared/deprecatedRuntimes');
@@ -33,8 +34,9 @@ async function saveToFile(dirPath, fileName, content) {
     fs.mkdirSync(dirPath, { recursive: true }, (err) => err && console.error(err));
   }
 
+  const filePath = path.join(dirPath, fileName);
   const yamlString = yaml.dump(content);
-  await fs.writeFile(`${dirPath}/${fileName}`, yamlString);
+  await fs.writeFile(filePath, yamlString);
 }
 
 async function startClean(dirPath) {
@@ -124,7 +126,7 @@ async function storeStacksWithDeprecatedLambdaRuntimes(
     progressBar.increment(1);
   }
 
-  const dirPath = `${baseDir}/${account}/${region}`;
+  const dirPath = path.join(baseDir, account, region);
   const fileName = stacksFileName;
   await saveToFile(dirPath, fileName, content);
   printResult(content);
@@ -141,7 +143,7 @@ async function fileExists(filePath) {
 
 async function scan(options) {
   const scanOptions = await utils.setup(options);
-  const runtimes = deprecatedRuntimes.get();
+  const runtimes = await deprecatedRuntimes.get();
 
   if (scanOptions.regions.length > 1) {
     console.log(`No region provided. Performing scan command on all regions: \n${scanOptions.regions.join('\n')}`);

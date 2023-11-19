@@ -3,6 +3,7 @@
 
 const fs = require('fs-extra');
 const yaml = require('js-yaml');
+const path = require('path');
 const utils = require('../../shared/utils');
 
 function createTagKeyValueObject(tagKeyValueFilter) {
@@ -118,7 +119,12 @@ async function list(options) {
   let stacksResult = [];
   let validScanFileExists = false;
   for await (const region of listOptions.regions) {
-    const filePath = `${listOptions.baseDir}/${listOptions.accountId}/${region}/${listOptions.stacksFileName}`;
+    const filePath = path.join(
+      listOptions.baseDir,
+      listOptions.accountId,
+      region,
+      listOptions.stacksFileName,
+    );
     validScanFileExists = await validScanFilesExists(filePath, region, 7);
     if (validScanFileExists) {
       const content = await readStacksFile(filePath);

@@ -1,8 +1,11 @@
 const inquirer = require('inquirer');
+const os = require('os');
+const path = require('path');
 const aws = require('./aws');
 
 async function setup(options) {
   const availableRegions = await aws.getRegions();
+  const homeDir = os.homedir();
 
   if (options.region && !availableRegions.includes(options.region)) {
     throw new Error(`Region ${options.region} is not a valid region in this account. Available regions are:\n${availableRegions.join('\n')}`);
@@ -10,7 +13,7 @@ async function setup(options) {
 
   const accountId = await aws.getAccountId();
   const regions = options.region ? [options.region] : availableRegions;
-  const baseDir = '.stacks';
+  const baseDir = path.join(homeDir, '.stacks');
   const stacksFileName = 'stacks.yaml';
 
   return {
