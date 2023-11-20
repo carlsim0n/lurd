@@ -28,7 +28,9 @@
     "deprecated runtimes",
     "lambda",
     "serverless",
-    "unsupported runtimes"
+    "unsupported runtimes",
+    "lambda unsupported runtimes detector",
+    "lurd"
   ],
   "engines": {
     "node": ">=18.0.0"

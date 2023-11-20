@@ -1,5 +1,7 @@
 # Lambda Unsupported Runtimes Detector (lurd)
 
+*CLI tool that detects your deprecated runtimes and which cloudformaiton stack they belong to*
+
 ![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 [![cd](https://github.com/carlsim0n/lurd/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/carlsim0n/lurd/actions/workflows/cd.yml)
