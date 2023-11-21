@@ -5,6 +5,14 @@
   "main": "index.js",
   "author": "carlsim0n",
   "license": "MIT",
+  "homepage": "https://github.com/carlsim0n/lurd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlsim0n/lurd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlsim0n/lurd/issues"
+  },
   "bin": {
     "lurd": "index.js",
     "lambda-unsupported-runtimes-detector": "index.js"
