@@ -1,3 +1,4 @@
+<!-- omit from toc --> 
 # Lambda Unsupported Runtimes Detector (lurd)
 
 *CLI tool that detects your deprecated runtimes and which cloudformaiton stack they belong to*
@@ -9,10 +10,16 @@
 Have you like many others started your cloud journey by producing loads of lambdas? As time goes by you might have lambdas with deprecated runtimes. Do you suspect you have deprecated ones? Then go ahead and use this tool to scan your AWS account. 
 
 **But there's already a trusted advisor check that can list deprecated lambda runtimes?**  
-Yes, but it requires business or enterprice support plans. Besides, Lambda Unsupported Runtimes Detector (lurd) lists the stacks that the function belongs to which reduces the amount of time spent on detective work.
+Yes, but it requires business or enterprise support plans. Besides, Lambda Unsupported Runtimes Detector (lurd) lists the stacks that the function belongs to which reduces the amount of time spent on detective work.
 
-#### Note
+**Note**  
 This tool **only** scans lambdas **created through AWS cloudformation**. The idea is that you should easliy be able to overlook a list of functions and which stack they belong to in order to take action.
+
+- [Getting started](#getting-started)
+  - [Commands](#commands)
+    - [scan](#scan)
+    - [list](#list)
+- [Known issues and limitations](#known-issues-and-limitations)
 
 ## Getting started
 
@@ -87,3 +94,6 @@ lurd list --broken-stacks
 # List all stacks and it's related deprecated functions
 lurd list
 ```
+
+## Known issues and limitations
+- Currently lurd is scraping [html](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) to get the list of AWS lambda deprecated runtimes. Scraping is fragile so there's a [hardcoded fallback](./shared/deprecatedRuntimes.json). However, that hardcoded fallback might not be 100% up to date.
